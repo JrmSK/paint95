@@ -2,6 +2,7 @@ var Paint = {};
 
 Paint.start = function() {
     Paint.bindMenuActions();
+    Paint.generateDynamicColors();
 };
 
 Paint.bindMenuActions = function() {
@@ -24,5 +25,25 @@ Paint.load = function() {
 Paint.new = function() {
     alert('new');                 // TODELETE
 };
+
+Paint.colors = ['black','red','green','blue','brown','white'];
+
+Paint.generateDynamicColors = function() {
+    var colorsHolder = document.getElementById("colors-menu");
+    for (var i=0; i<Paint.colors.length;i++) {
+        var buttonItem = document.createElement('li');
+        var newButton = document.createElement('button');
+        newButton.style.backgroundColor = Paint.colors[i];
+        newButton.style.borderRadius = "50%";
+        newButton.style.height = "40px";
+        newButton.style.width = "40px";
+        newButton.className = Paint.colors[i];
+        buttonItem.appendChild(newButton);
+        colorsHolder.appendChild(buttonItem);
+    }
+}
+
+
+
 
 Paint.start();
