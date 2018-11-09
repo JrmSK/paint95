@@ -22,21 +22,26 @@
         <ul id="colors-menu">
 
         </ul>
-        <div id="colorSelected"></div>
+        <h3 class="menu-title">Brush Size</h3>
+        <div id="size-menu">
+            <input type="range" min="2" max="20" value="5" class="slider" id="selected-size">
+            <div id="display-holder">
+                <span id="display-size"></span>
+                <span>px</span>
+            </div>
+        </div>
     </div>
     <div id="canvas-wrapper">
         <div id="canvas"></div>
     </div>
     <div id="modal-wrapper" style="display:none;">
         <div class="modal">
-            <span class="close-btn clickable">X</span>
             <div class="modal-title">Welcome to Paint95!</div>
-            <div class="modal-content">Please enter your Painting name:
+            <div class="modal-content">Please enter a name for your painting:
                 <input type="text" id="painting-name" /></div>
-                <div id="signature">By JrM</div>
+            <div id="signature">By JrM</div>
             <br>
-            <button>Cancel</button>
-            <button>OK</button>
+            <button id="validate-btn">OK</button>
         </div>
     </div>
 

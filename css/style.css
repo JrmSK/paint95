@@ -8,10 +8,14 @@
 
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 #side-menu {
     top: 0;
     left: 0;
-    width: 180px;
+    width: 15%;
     padding-top: 7px;
     position: absolute;
     height: 100vh;
@@ -24,6 +28,19 @@
 
 #side-menu .menu-title{
     text-align: center;
+    color: white;
+    font-size: 2vw;
+}
+
+#side-menu #size-menu {
+    width: 75%;
+    margin-left: 10%;
+
+}
+
+#side-menu #display-holder {
+    height: 20px;
+    text-align: center;
 }
 
 #side-menu ul{
@@ -34,9 +51,9 @@
 #side-menu button{
     color:white;
     background-color:#002fa7;
-    font-size:30px;
+    font-size: 2vw;
     margin: 7px;
-    width: 150px;
+    width: 80%;
 }
 
 #white {
@@ -46,8 +63,8 @@
 }
 
 #canvas-wrapper {
-    background: url("../img/KleinBG.jpg");
-    background-size: 110%;
+    background: url("../img/KleinBG2.jpg");
+    background-size: 200%;
     background-position: center;
     height: 100vh;
     text-align: center;
@@ -56,8 +73,11 @@
 #canvas {
     height: 500px;
     width: 500px;
-    margin: auto;
+    top: 17%;
+    left: 30%;
     background-color: white;
+    position: relative;
+    overflow: hidden;
 }
 #modal-wrapper{
     position:fixed;
@@ -72,6 +92,8 @@
 #modal-wrapper .modal-title{
     font-family: 'Source Sans Pro', sans-serif;
     font-size:40px;
+    margin-top: 1%;
+    margin-bottom: 15%;
     color: #002fa7;
     font-weight: 600;
 }
@@ -99,6 +121,10 @@
 .modal button {
     background-color: grey;
     border: 1px solid #002fa7;
+    margin-top: 10%;
+    width: 25%;
+    margin-left: 70%;
+    height: 10%;
     color: white;
     padding: 2px;
     padding-left: 5px;
@@ -107,14 +133,15 @@
 
 .modal-content {
     border-radius: 2px;
-    width: 350px;
+    width: 380px;
+    background-color: #002fa748;
 }
 
 #signature {
     font-size: 12px;
     position: absolute;
-    bottom: 2px;
-    right: 2px;
+    bottom: 10px;
+    right: 10px;
     color: grey;
 }
 
