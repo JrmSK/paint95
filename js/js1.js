@@ -44,6 +44,7 @@ Paint.load = function () {
 
 Paint.new = function () {
     Paint.showModal();
+    
 };
 
 Paint.draw = function (e) {
