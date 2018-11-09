@@ -1,6 +1,6 @@
 var Paint = {};
 Paint.colors = ['black', 'yellow', 'green', 'blue', 'brown', 'white'];      // if you want to add colors, add it here in the array before white (eraser);
-Paint.selectedColor = "black";
+Paint.selectedColor = Paint.colors[0];
 Paint.nameOfPainting = "";
 Paint.selectedSize = 10;
 
@@ -29,14 +29,33 @@ Paint.showModal = function () {
     modalWrapper.style.display = "block";
     validate.addEventListener("click", function () {
         Paint.nameOfPainting = nameOfPainting.value;
+        document.getElementById("painting-title").innerHTML = Paint.nameOfPainting;
         modalWrapper.style.display = "none";
     })
 
 }
 
 Paint.save = function () {
-    alert('save');                  // TODELETE
+    var canvas = document.getElementById("canvas");
+    var canvasLeft = canvas.getBoundingClientRect().left;
+    var canvasTop = canvas.getBoundingClientRect().top;
+    var canvasObj = {};
+    canvasObj["name"] = document.getElementById("painting-title").innerHTML;
+    canvasObj["pixels"] = [];
+    var allPixels = canvas.getElementsByClassName("pixel");
+    for (var i=0; i<allPixels.length; i++) {
+        var currentPixel = allPixels[i];
+        var pixelObj = {};
+        pixelObj["size"] = currentPixel.style.height;
+        pixelObj["top"] = currentPixel.getBoundingClientRect().top - canvasTop;
+        pixelObj["left"] = currentPixel.getBoundingClientRect().left - canvasLeft;
+        canvasObj["pixels"].push(pixelObj);
+    }
+    localStorage.setItem("painting", JSON.stringify(canvasObj));
+    alert("your painting have been saved");
 };
+
+
 
 Paint.load = function () {
     alert('load');                 // TODELETE
@@ -44,13 +63,19 @@ Paint.load = function () {
 
 Paint.new = function () {
     Paint.showModal();
-    
+    var canvas = document.getElementById("canvas");
+    var allPixels = canvas.getElementsByClassName("pixel");
+    while (allPixels.length > 0) {
+        canvas.removeChild(allPixels[0]);
+    }
+
 };
 
 Paint.draw = function (e) {
     var canvas = document.getElementById("canvas");
     Paint.pixel = document.createElement("div");
     canvas.appendChild(Paint.pixel);
+    Paint.pixel.className = "pixel";
     Paint.pixel.style.position = "absolute";
     Paint.pixel.style.top = e.clientY - canvas.offsetTop + "px";
     Paint.pixel.style.left = e.clientX - canvas.offsetLeft + "px";
@@ -84,7 +109,7 @@ Paint.generateDynamicColors = function () {
         newButton.className = "cover-bg colors-btn";
         newButton.id = Paint.colors[i];
         if (Paint.colors[i] === "black")
-        newButton.classList.add("selected");
+            newButton.classList.add("selected");
         buttonItem.appendChild(newButton);
         colorsHolder.appendChild(buttonItem);
         newButton.addEventListener("click", function (e) {

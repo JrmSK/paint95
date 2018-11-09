@@ -22,9 +22,6 @@
     background-color: rgba(255, 255, 255, 0.5);
     
 }
-#side-menu button.selected{
-    border:2px solid lightgreen;
-}
 
 #side-menu .menu-title{
     text-align: center;
@@ -54,12 +51,16 @@
     margin-left: 12%;
 }
 
-#side-menu button{
+#side-menu button.option{
     color:white;
     background-color:#002fa7;
     font-size: 2vw;
     margin: 7px;
     width: 80%;
+}
+
+#side-menu button.selected{
+    border:2px solid lightgreen;
 }
 
 #white {
@@ -76,10 +77,18 @@
     text-align: center;
 }
 
+#painting-title {
+    color: white;
+    position: relative;
+    font-size: 25px;
+    top: 20%;
+    left: 35%;
+}
+
 #canvas {
     height: 500px;
     width: 500px;
-    top: 17%;
+    top: 13%;
     left: 30%;
     background-color: white;
     position: relative;
