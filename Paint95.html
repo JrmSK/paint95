@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <title>Paint 95</title>
@@ -12,9 +13,10 @@
 <body id="main">
     <div id="side-menu">
         <ul>
+            <li><button id="new">New</button></li>
             <li><button id="save">Save</button></li>
             <li><button id="load">Load</button></li>
-            <li><button id="new">New</button></li>
+
         </ul>
         <h3 class="menu-title">Colors</h3>
         <ul id="colors-menu">
@@ -24,6 +26,21 @@
     </div>
     <div id="canvas-wrapper">
         <div id="canvas"></div>
+    </div>
+    <div id="modal-wrapper" style="display:none;">
+        <div class="modal">
+            <span class="close-btn clickable">X</span>
+            <div class="modal-title">Welcome to Paint95!</div>
+            <div class="modal-content">Please enter your Painting name:
+                <input type="text" id="painting-name" /></div>
+                <div id="signature">By JrM</div>
+            <br>
+            <button>Cancel</button>
+            <button>OK</button>
+        </div>
+    </div>
+
+
     </div>
 
 
