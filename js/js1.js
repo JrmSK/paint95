@@ -1,6 +1,6 @@
 var Paint = {};
 Paint.colors = ['black', 'yellow', 'green', 'blue', 'brown', 'white'];      // if you want to add colors, add it here in the array before white (eraser);
-Paint.selectedColor = "";
+Paint.selectedColor = "black";
 Paint.nameOfPainting = "";
 Paint.selectedSize = 10;
 
@@ -57,7 +57,7 @@ Paint.draw = function (e) {
     Paint.pixel.style.backgroundColor = Paint.selectedColor;
     Paint.pixel.style.height = `${Paint.selectedSize}px`;
     Paint.pixel.style.width = `${Paint.selectedSize}px`;
-    Paint.pixel.style.borderRadius = "30%";
+    Paint.pixel.style.borderRadius = "20%";
 
 }
 
@@ -83,6 +83,8 @@ Paint.generateDynamicColors = function () {
         newButton.style.width = "4vw";
         newButton.className = "cover-bg colors-btn";
         newButton.id = Paint.colors[i];
+        if (Paint.colors[i] === "black")
+        newButton.classList.add("selected");
         buttonItem.appendChild(newButton);
         colorsHolder.appendChild(buttonItem);
         newButton.addEventListener("click", function (e) {
