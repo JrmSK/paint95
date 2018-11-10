@@ -1,13 +1,16 @@
 var Paint = {};
 Paint.colors = ['black', 'yellow', 'green', 'blue', 'brown', 'white'];      // if you want to add colors, add it here in the array before white (eraser);
+Paint.shapes = ['10%', '50%'];
 Paint.selectedColor = Paint.colors[0];
 Paint.nameOfPainting = "";
 Paint.selectedSize = 10;
+Paint.selectedShape = "20%";
 
 Paint.start = function () {
     Paint.bindMenuActions();
     Paint.generateDynamicColors();
     Paint.generateDynamicSizes();
+    Paint.generateDynamicShapes();
     Paint.showModal();
     Paint.bindCanvasClick();
 };
@@ -19,7 +22,6 @@ Paint.bindMenuActions = function () {
     buttonSave.addEventListener("click", Paint.save);
     var buttonLoad = document.getElementById("load");
     buttonLoad.addEventListener("click", Paint.load);
-
 };
 
 Paint.showModal = function () {
@@ -32,7 +34,6 @@ Paint.showModal = function () {
         document.getElementById("painting-title").innerHTML = Paint.nameOfPainting;
         modalWrapper.style.display = "none";
     })
-
 }
 
 Paint.save = function () {
@@ -43,7 +44,7 @@ Paint.save = function () {
     canvasObj["name"] = document.getElementById("painting-title").innerHTML;
     canvasObj["pixels"] = [];
     var allPixels = canvas.getElementsByClassName("pixel");
-    for (var i=0; i<allPixels.length; i++) {
+    for (var i = 0; i < allPixels.length; i++) {
         var currentPixel = allPixels[i];
         var pixelObj = {};
         pixelObj["size"] = currentPixel.style.height;
@@ -56,7 +57,7 @@ Paint.save = function () {
     alert("your painting have been saved");
 };
 
-Paint.reset = function() {
+Paint.reset = function () {
     var canvas = document.getElementById("canvas");
     var allPixels = canvas.getElementsByClassName("pixel");
     while (allPixels.length > 0) {
@@ -71,7 +72,7 @@ Paint.load = function () {
     var paintingTitle = document.getElementById("painting-title");
     paintingTitle.innerHTML = canvasObj["name"];
     var allPixels = canvasObj["pixels"];
-    for (var i=0; i<allPixels.length; i++) {
+    for (var i = 0; i < allPixels.length; i++) {
         var currentPixel = allPixels[i];
         var pixelDiv = document.createElement("div");
         pixelDiv.style.height = currentPixel["size"];
@@ -83,8 +84,6 @@ Paint.load = function () {
         pixelDiv.style.left = currentPixel["left"] + "px";
         var canvas = document.getElementById("canvas");
         canvas.appendChild(pixelDiv);
-       
-        
     }
     alert("Your painting is loaded");
 };
@@ -92,7 +91,6 @@ Paint.load = function () {
 Paint.new = function () {
     Paint.showModal();
     Paint.reset();
-
 };
 
 Paint.draw = function (e) {
@@ -106,8 +104,7 @@ Paint.draw = function (e) {
     Paint.pixel.style.backgroundColor = Paint.selectedColor;
     Paint.pixel.style.height = `${Paint.selectedSize}px`;
     Paint.pixel.style.width = `${Paint.selectedSize}px`;
-    Paint.pixel.style.borderRadius = "20%";
-
+    Paint.pixel.style.borderRadius = Paint.selectedShape;
 }
 
 Paint.bindCanvasClick = function () {
@@ -130,34 +127,63 @@ Paint.generateDynamicColors = function () {
         newButton.style.borderRadius = "50%";
         newButton.style.height = "4vw";
         newButton.style.width = "4vw";
-        newButton.className = "cover-bg colors-btn";
+        newButton.className = "colors-btn";
         newButton.id = Paint.colors[i];
-        if (Paint.colors[i] === "black")
+        if (Paint.colors[i] === "black") {
             newButton.classList.add("selected");
+        }
         buttonItem.appendChild(newButton);
         colorsHolder.appendChild(buttonItem);
         newButton.addEventListener("click", function (e) {
             var clickedColor = this;
             Paint.selectedColor = clickedColor.id;
-            allColorsButtons = document.getElementsByClassName("colors-btn")
+            var allColorsButtons = document.getElementsByClassName("colors-btn");
             for (var j = 0; j < Paint.colors.length; j++) {
                 allColorsButtons[j].classList.remove("selected");
             }
             clickedColor.classList.add("selected");
         })
-
     }
 }
 
 Paint.generateDynamicSizes = function () {
     var sizeHolder = document.getElementById("selected-size");
     var displaySize = document.getElementById("display-size");
+    var sizeTitle = document.getElementById("size-title");
+    sizeTitle.innerHTML = "Brush Size";
     displaySize.innerHTML = Paint.selectedSize;
     sizeHolder.oninput = function () {
         displaySize.innerHTML = sizeHolder.value;
         Paint.selectedSize = sizeHolder.value;
     }
+}
 
+Paint.generateDynamicShapes = function () {
+    var shapeTitle = document.getElementById("shape-title");
+    shapeTitle.innerHTML = "Brush Shape";
+    var shapeHolder = document.getElementById("shape-menu");
+    for (var i = 0; i < Paint.shapes.length; i++) {
+        var newButton = document.createElement("button");
+        shapeHolder.appendChild(newButton);
+        newButton.style.backgroundColor = "#002fa7";
+        newButton.style.height = "4vw";
+        newButton.style.width = "4vw";
+        newButton.style.margin = "1vw";
+        newButton.className = "shape-btn";
+        newButton.style.borderRadius = Paint.shapes[i];
+        if (i === 0) {
+            newButton.classList.add("selected");
+        }
+        newButton.addEventListener("click", function (e) {
+            var clickedShape = this;
+            Paint.selectedShape = clickedShape.style.borderRadius;
+            var allShapesButtons = document.getElementsByClassName("shape-btn");
+            for (var j = 0; j < Paint.shapes.length; j++) {
+                allShapesButtons[j].classList.remove("selected");
+            }
+            clickedShape.classList.add("selected");
+        });
+    }
 }
 
 Paint.start();

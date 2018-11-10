@@ -40,6 +40,10 @@
     text-align: center;
 }
 
+#side-menu #shape-menu {
+    text-align: center;
+}
+
 #side-menu ul{
     list-style: none;
     text-align: center;
