@@ -1,12 +1,12 @@
 var Paint = {};
-Paint.colors = ['black', 'yellow', 'green', 'blue', 'brown', 'white'];      // if you want to add colors, add it here in the array before white (eraser);
+Paint.colors = ['black', 'yellow', 'green', 'aqua', 'hotpink', 'blue', 'brown', 'white'];      // if you want to add colors, add it here in the array before white (eraser);
 Paint.shapes = ['10%', '50%'];
 Paint.selectedColor = Paint.colors[0];
 Paint.canvasHeight = "500px";
 Paint.canvasWidth = "500px";
 Paint.nameOfPainting = "";
 Paint.selectedSize = 10;
-Paint.selectedShape = "20%";
+Paint.selectedShape = "10%";
 
 Paint.start = function () {
     Paint.bindMenuActions();
@@ -60,6 +60,7 @@ Paint.save = function () {
         var pixelObj = {};
         pixelObj["size"] = currentPixel.style.height;
         pixelObj["color"] = currentPixel.style.backgroundColor;
+        pixelObj["shape"] = currentPixel.style.borderRadius;
         pixelObj["top"] = currentPixel.getBoundingClientRect().top - canvasTop;
         pixelObj["left"] = currentPixel.getBoundingClientRect().left - canvasLeft;
         canvasObj["pixels"].push(pixelObj);
@@ -92,6 +93,7 @@ Paint.load = function () {
         pixelDiv.style.height = currentPixel["size"];
         pixelDiv.style.width = currentPixel["size"];
         pixelDiv.style.backgroundColor = currentPixel["color"];
+        pixelDiv.style.borderRadius = currentPixel["shape"];
         pixelDiv.style.position = "absolute";
         pixelDiv.className = "pixel";
         pixelDiv.style.top = currentPixel["top"] + "px";
@@ -139,8 +141,8 @@ Paint.generateDynamicColors = function () {
         var newButton = document.createElement('button');
         newButton.style.backgroundColor = Paint.colors[i];
         newButton.style.borderRadius = "50%";
-        newButton.style.height = "4vw";
-        newButton.style.width = "4vw";
+        newButton.style.height = "3vw";
+        newButton.style.width = "3vw";
         newButton.className = "colors-btn";
         newButton.id = Paint.colors[i];
         if (Paint.colors[i] === "black") {
@@ -180,8 +182,8 @@ Paint.generateDynamicShapes = function () {
         var newButton = document.createElement("button");
         shapeHolder.appendChild(newButton);
         newButton.style.backgroundColor = "#002fa7";
-        newButton.style.height = "4vw";
-        newButton.style.width = "4vw";
+        newButton.style.height = "3vw";
+        newButton.style.width = "3vw";
         newButton.style.margin = "1vw";
         newButton.className = "shape-btn";
         newButton.style.borderRadius = Paint.shapes[i];

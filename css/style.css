@@ -15,7 +15,7 @@
 #side-menu {
     top: 0;
     left: 0;
-    width: 15%;
+    width: 12%;
     padding-top: 7px;
     position: absolute;
     height: 100vh;
@@ -26,12 +26,12 @@
 #side-menu .menu-title{
     text-align: center;
     color: white;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 #side-menu #size-menu {
     width: 75%;
-    margin-left: 10%;
+    margin: auto;
 
 }
 
@@ -51,14 +51,14 @@
 
 #side-menu ul.two-columns{
     columns: 2;
-    width: 75%;
-    margin-left: 12%;
+    width: 60%;
+    margin-left: 20%;
 }
 
 #side-menu button.option{
     color:white;
     background-color:#002fa7;
-    font-size: 2vw;
+    font-size: 1.5vw;
     margin: 7px;
     width: 80%;
 }
@@ -109,7 +109,6 @@
 #modal-wrapper .modal-title{
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 4vw;
-    margin-top: 1%;
     margin-bottom: 5%;
     color: #002fa7;
     font-weight: 600;
@@ -125,8 +124,12 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    padding: 3vw;
+    padding: 1.5vw;
     border-radius: 2px;
+}
+
+.modal input {
+    border: 1px solid #002fa77c;
 }
 
 .modal button {
@@ -139,6 +142,9 @@
     padding: 2px;
     padding-left: 5px;
     padding-right: 5px;
+    position: absolute;
+    bottom: 3vw;
+    right: 3vw;
 }
 
 .modal-content {
@@ -162,8 +168,8 @@
 #signature {
     font-size: 12px;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
     color: grey;
 }
 

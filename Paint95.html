@@ -42,13 +42,23 @@
     <div id="modal-wrapper" style="display:none;">
         <div class="modal">
             <div class="modal-title">Welcome to Paint95!</div>
-            <div class="modal-content" id="name-content">Enter a name for your painting:
-                <input type="text" id="painting-name" /></div>
-            <div class="modal-content" id="height-content">Heigh:
-                <input type="number" id="painting-height" min="100" max="800" value="500"/>px</div>
-            <div class="modal-content" id="width-content">Width:
-                <input type="number" id="painting-width" min="100" max="800" value="500"/>px</div>
-            <div id="signature">By JrM</div>
+            <span class="modal-content" id="name-content">
+                Enter a name for your painting:
+            </span>
+            <input type="text" id="painting-name" />
+            <br/>
+            <span class="modal-content" id="height-content"> 
+                Heigh in px:
+            </span>
+            <input type="number" id="painting-height" min="100" max="800" value="500" />
+            <br/>
+            <span class="modal-content" id="width-content">
+                Width in px:
+            </span>
+            <input type="number" id="painting-width" min="100" max="800" value="500" />
+            <div id="signature">
+                By JrM
+            </div>
             <br>
             <button id="validate-btn">OK</button>
         </div>
