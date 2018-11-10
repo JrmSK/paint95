@@ -42,8 +42,8 @@ Paint.showModal = function () {
         canvas.style.width = Paint.widthOfCanvas;
         document.getElementById("painting-title").innerHTML = Paint.nameOfPainting;
         modalWrapper.style.display = "none";
-    })
-}
+    });
+};
 
 Paint.save = function () {
     var canvas = document.getElementById("canvas");
@@ -64,7 +64,7 @@ Paint.save = function () {
         pixelObj["top"] = currentPixel.getBoundingClientRect().top - canvasTop;
         pixelObj["left"] = currentPixel.getBoundingClientRect().left - canvasLeft;
         canvasObj["pixels"].push(pixelObj);
-    }
+    };
     localStorage.setItem("painting", JSON.stringify(canvasObj));
     alert("your painting have been saved");
 };
@@ -74,8 +74,8 @@ Paint.reset = function () {
     var allPixels = canvas.getElementsByClassName("pixel");
     while (allPixels.length > 0) {
         canvas.removeChild(allPixels[0]);
-    }
-}
+    };
+};
 
 Paint.load = function () {
     var loadedPainting = localStorage.getItem("painting");
@@ -100,7 +100,7 @@ Paint.load = function () {
         pixelDiv.style.left = currentPixel["left"] + "px";
         var canvas = document.getElementById("canvas");
         canvas.appendChild(pixelDiv);
-    }
+    };
     alert("Your painting is loaded");
 };
 
@@ -121,7 +121,7 @@ Paint.draw = function (e) {
     Paint.pixel.style.height = `${Paint.selectedSize}px`;
     Paint.pixel.style.width = `${Paint.selectedSize}px`;
     Paint.pixel.style.borderRadius = Paint.selectedShape;
-}
+};
 
 Paint.bindCanvasClick = function () {
     var canvas = document.getElementById("canvas");
@@ -132,7 +132,7 @@ Paint.bindCanvasClick = function () {
     document.addEventListener("click", function () {
         canvas.removeEventListener("mousemove", Paint.draw)
     });
-}
+};
 
 Paint.generateDynamicColors = function () {
     var colorsHolder = document.getElementById("colors-menu");
@@ -156,11 +156,11 @@ Paint.generateDynamicColors = function () {
             var allColorsButtons = document.getElementsByClassName("colors-btn");
             for (var j = 0; j < Paint.colors.length; j++) {
                 allColorsButtons[j].classList.remove("selected");
-            }
+            };
             clickedColor.classList.add("selected");
-        })
-    }
-}
+        });
+    };
+};
 
 Paint.generateDynamicSizes = function () {
     var sizeHolder = document.getElementById("selected-size");
@@ -171,8 +171,8 @@ Paint.generateDynamicSizes = function () {
     sizeHolder.oninput = function () {
         displaySize.innerHTML = sizeHolder.value;
         Paint.selectedSize = sizeHolder.value;
-    }
-}
+    };
+};
 
 Paint.generateDynamicShapes = function () {
     var shapeTitle = document.getElementById("shape-title");
@@ -199,7 +199,7 @@ Paint.generateDynamicShapes = function () {
             }
             clickedShape.classList.add("selected");
         });
-    }
-}
+    };
+};
 
 Paint.start();

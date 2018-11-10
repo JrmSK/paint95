@@ -5,7 +5,6 @@
     outline: 0;
     font-size: 100%;
     font-family: 'Source Sans Pro', sans-serif;
-
 }
 
 .clickable {
@@ -20,7 +19,6 @@
     position: absolute;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.5);
-    
 }
 
 #side-menu .menu-title{
@@ -32,7 +30,6 @@
 #side-menu #size-menu {
     width: 75%;
     margin: auto;
-
 }
 
 #side-menu #display-holder {
@@ -96,6 +93,7 @@
     position: relative;
     overflow: hidden;
 }
+
 #modal-wrapper{
     position:fixed;
     top:0;
@@ -172,4 +170,3 @@
     right: 5px;
     color: grey;
 }
-
