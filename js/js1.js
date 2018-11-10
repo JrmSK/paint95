@@ -47,6 +47,7 @@ Paint.save = function () {
         var currentPixel = allPixels[i];
         var pixelObj = {};
         pixelObj["size"] = currentPixel.style.height;
+        pixelObj["color"] = currentPixel.style.backgroundColor;
         pixelObj["top"] = currentPixel.getBoundingClientRect().top - canvasTop;
         pixelObj["left"] = currentPixel.getBoundingClientRect().left - canvasLeft;
         canvasObj["pixels"].push(pixelObj);
@@ -55,19 +56,42 @@ Paint.save = function () {
     alert("your painting have been saved");
 };
 
-
-
-Paint.load = function () {
-    alert('load');                 // TODELETE
-};
-
-Paint.new = function () {
-    Paint.showModal();
+Paint.reset = function() {
     var canvas = document.getElementById("canvas");
     var allPixels = canvas.getElementsByClassName("pixel");
     while (allPixels.length > 0) {
         canvas.removeChild(allPixels[0]);
     }
+}
+
+Paint.load = function () {
+    var loadedPainting = localStorage.getItem("painting");
+    var canvasObj = JSON.parse(loadedPainting);
+    Paint.reset();
+    var paintingTitle = document.getElementById("painting-title");
+    paintingTitle.innerHTML = canvasObj["name"];
+    var allPixels = canvasObj["pixels"];
+    for (var i=0; i<allPixels.length; i++) {
+        var currentPixel = allPixels[i];
+        var pixelDiv = document.createElement("div");
+        pixelDiv.style.height = currentPixel["size"];
+        pixelDiv.style.width = currentPixel["size"];
+        pixelDiv.style.backgroundColor = currentPixel["color"];
+        pixelDiv.style.position = "absolute";
+        pixelDiv.className = "pixel";
+        pixelDiv.style.top = currentPixel["top"] + "px";
+        pixelDiv.style.left = currentPixel["left"] + "px";
+        var canvas = document.getElementById("canvas");
+        canvas.appendChild(pixelDiv);
+       
+        
+    }
+    alert("Your painting is loaded");
+};
+
+Paint.new = function () {
+    Paint.showModal();
+    Paint.reset();
 
 };
 
