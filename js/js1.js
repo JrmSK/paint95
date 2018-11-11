@@ -40,6 +40,8 @@ Paint.showModal = function () {
         Paint.widthOfCanvas = widthOfCanvas.value + "px";
         canvas.style.height = Paint.heightOfCanvas;
         canvas.style.width = Paint.widthOfCanvas;
+        canvas.style.maxHeight = "600px";
+        canvas.style.maxWidth = "600px";
         document.getElementById("painting-title").innerHTML = Paint.nameOfPainting;
         modalWrapper.style.display = "none";
     });
